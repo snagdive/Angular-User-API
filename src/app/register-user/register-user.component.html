@@ -1,0 +1,42 @@
+
+<h3 Style="font-weight: bold;padding-left: 10px;">Register User</h3>
+<div style="padding-left: 10px;">
+<div [hidden]="isRegistered" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name" style="font-weight: bold;">Name: </label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="user.name" name="name">
+    </div>
+    
+    <div class="form-group">
+      <label for="name" style="font-weight: bold;">Surname: </label>
+      <input type="text" class="form-control" id="surname" [(ngModel)]="user.surname" name="surname">
+    </div>
+    
+    <div class="form-group">
+      <label for="name" style="font-weight: bold;">Pincode: </label>
+      <input type="text" class="form-control" id="pincode" [(ngModel)]="user.pincode" name="pincode">
+    </div>
+    
+    <div class="form-group">
+        <label for="name" style="font-weight: bold;">Date of Birth: </label>
+        <input type="date" class="form-control" id="dob" name="dob" [ngModel]="user.dob | date:'yyyy-MM-dd'" (ngModelChange)="user.dob = $event">
+    </div>
+    
+    <div class="form-group">
+      <label for="name" style="font-weight: bold;">Date of Joining: </label>
+      <input type="date" class="form-control" id="doj" name="doj" [ngModel]="user.doj | date:'yyyy-MM-dd'" (ngModelChange)="user.doj = $event">
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="name" Style="font-weight: bold; padding-right: 5px;">Active Status: </label>
+      <input type="radio" id="activeStatus" [(ngModel)]="user.activeStatus" name="activeStatus" value=true> YES
+      <input type="radio" id="activeStatus" [(ngModel)]="user.activeStatus" name="activeStatus" value=false> NO
+    </div> 
+    <br/>
+    <button type="submit" class="btn btn-success" style="width:50%;">Submit</button>
+    <button (click)="showUsersList()" class="btn btn-danger" style="width:50%;"> Cancel</button>
+  </form>
+  <br/><br/>
+</div>
+</div>

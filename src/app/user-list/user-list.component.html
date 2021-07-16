@@ -1,0 +1,86 @@
+
+<div class="panel-body" style="margin-left: 10px">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 style="font-weight: bold;">User List</h2>
+    </div>
+
+    <div class="panel-body" style="width: 80%;">
+
+      <table>
+        <tr> 
+          <td>
+            <label for="name" style="font-weight: bold; padding-right: 10px;">Search By: </label>
+          </td>
+
+          <td>
+            <select name="searchBy" id="searchBy" [(ngModel)]="searchBy">
+              <option value="name">Name</option>
+              <option value="surname">Surname</option>
+              <option value="pincode">Pincode</option>
+            </select>
+          </td>
+
+          <td>
+            <label for="name" style="font-weight: bold; padding-right: 10px;padding-left: 10px;">Search Value: </label>
+          </td>
+          
+          <td>
+            <input type="text" id="search_value" name="search_value" [(ngModel)]="searchValue">&nbsp;
+          </td>
+
+          <td>
+            <button (click)="userSearch()" class="btn btn-success" >Search User</button>&nbsp;
+          </td>
+
+          <td>
+            <label for="name" style="font-weight: bold; padding-right: 10px;">Sort List By: </label>
+          </td>
+          
+          <td>
+            <select name="sortBy" id="sortBy" [(ngModel)]="sortBy" (change)="sort()">
+            <option value="dob">Date of Birth</option>
+            <option value="doj">Date of Joining</option>
+            </select>&nbsp;
+          </td>
+
+          <td>
+            <button (click)="refresh()" class="btn btn-success" > Clear All </button>&nbsp;
+          </td>
+
+      </tr>
+      </table>
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Firstname</th>
+            <th>Surname</th>
+            <th>Pincode</th>
+            <th>Date of Birth</th>
+            <th>Date of Joining</th>
+            <th>ActiveStatus</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users | async">
+            <td>{{user.uid}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.pincode}}</td>
+            <td>{{user.dob | date:'dd-MMM-yyyy'}}</td>
+            <td>{{user.doj | date:'dd-MMM-yyyy'}}</td>
+            <td>{{user.activeStatus}}</td>
+            <td><button (click)="userDelete(user.uid, 'soft')" class="btn btn-danger">Delete (Soft)</button>
+                <button (click)="userDelete(user.uid, 'hard')" class="btn btn-danger" style="margin-left: 10px">Delete (Hard)</button>
+                <button (click)="userDetails(user.uid)" class="btn btn-info" style="margin-left: 10px">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button (click)="register()" class="btn btn-primary">Register New User</button><br>
+  </div>
+</div>
